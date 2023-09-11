@@ -1,20 +1,27 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from "./Layout";
 import "./App.css";
+import Home from "./Home";
 
-/**
- * App is a wrapper for <Layout>, you should not need to change this file.
- */
 
 function App() {
+  const [decks, setDecks] = useState([]);
+
+useEffect(() => {
+  // Fetch decks from API and set state
+}, []);
+
+
   return (
     <div className="app-routes">
-      <Switch>
-        <Route path="/">
-          <Layout />
-        </Route>
-      </Switch>
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
