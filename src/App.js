@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from "./Layout";
 import "./App.css";
 import Home from "./Home";
+import Study from './Study';
 
 
 function App() {
@@ -19,6 +20,9 @@ useEffect(() => {
         <Switch>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/decks/:deckId/study">
+            <Study />
           </Route>
         </Switch>
       </Router>
