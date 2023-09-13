@@ -26,7 +26,12 @@ function Study() {
       setCurrentCard(currentCard + 1);
       setIsFlipped(false);
     } else {
-      // Reset and ask if the user wants to restart
+      if (window.confirm("Restart cards?\n\nClick 'cancel' to return to the home page.")) {
+        setCurrentCard(0);
+        setIsFlipped(false);
+      } else {
+        history.push('/');
+      }
     }
   };
 
@@ -44,9 +49,14 @@ function Study() {
   return (
     <div>
       <h2>Study: {deck.name}</h2>
-      {/* Your existing card flipping and navigation logic here */}
-      <button onClick={handleFlip}>Flip</button>
-      {isFlipped && <button onClick={handleNext}>Next</button>}
+      <div>
+        <p>Card {currentCard + 1} of {deck.cards.length}</p>
+        <div>
+          {isFlipped ? deck.cards[currentCard].back : deck.cards[currentCard].front}
+        </div>
+        <button onClick={handleFlip}>Flip</button>
+        {isFlipped && <button onClick={handleNext}>Next</button>}
+      </div>
     </div>
   );
 }

@@ -18,7 +18,7 @@ useEffect(() => {
     <div className="app-routes">
       <Router>
         <Switch>
-          <Route path="/">
+          <Route exact={true} path="/">
             <Home />
           </Route>
           <Route path="/decks/:deckId/study">
