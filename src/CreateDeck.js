@@ -38,8 +38,8 @@ function CreateDeck() {
           value={deck.description}
           onChange={handleChange}
         />
-        <button type="button" onClick={() => history.push('/')}>Cancel</button>
         <button type="submit">Submit</button>
+        <button type="button" onClick={() => history.push('/')}>Cancel</button>
       </form>
     </div>
   );

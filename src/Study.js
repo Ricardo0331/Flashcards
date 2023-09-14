@@ -3,16 +3,16 @@ import { useParams, Link } from 'react-router-dom';
 import { readDeck } from './utils/api/index';
 
 function Study() {
-  const { deckId } = useParams();
-  const [deck, setDeck] = useState(null);
+  const [deck, setDeck] = useState({});
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const { deckId } = useParams();
 
   useEffect(() => {
-    const loadDeck = async () => {
-      const fetchedDeck = await readDeck(deckId);
-      setDeck(fetchedDeck);
-    };
+    async function loadDeck() {
+      const loadedDeck = await readDeck(deckId);
+      setDeck(loadedDeck);
+    }
     loadDeck();
   }, [deckId]);
 
@@ -28,11 +28,11 @@ function Study() {
       if (window.confirm('Restart cards?')) {
         setCurrentCard(0);
         setIsFlipped(false);
+      } else {
+        // Navigate back to the home screen
       }
     }
   };
-
-  if (!deck) return <p>Loading...</p>;
 
   return (
     <div>
@@ -40,14 +40,18 @@ function Study() {
         <Link to="/">Home</Link> / {deck.name} / Study
       </nav>
       <h2>Study: {deck.name}</h2>
-      <div>
-        <p>Card {currentCard + 1} of {deck.cards.length}</p>
+      {deck.cards && deck.cards.length > 2 ? (
         <div>
-          {isFlipped ? deck.cards[currentCard].back : deck.cards[currentCard].front}
+          <p>Card {currentCard + 1} of {deck.cards.length}</p>
+          <div>
+            {isFlipped ? deck.cards[currentCard].back : deck.cards[currentCard].front}
+          </div>
+          <button onClick={handleFlip}>Flip</button>
+          {isFlipped && <button onClick={handleNext}>Next</button>}
         </div>
-        <button onClick={handleFlip}>Flip</button>
-        {isFlipped && <button onClick={handleNext}>Next</button>}
-      </div>
+      ) : (
+        <p>Not enough cards. You need at least 3 cards to study.</p>
+      )}
     </div>
   );
 }
