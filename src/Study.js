@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { readDeck } from './utils/api/index';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { readDeck } from "./utils/api/index";
 
 function Study() {
+  const { deckId } = useParams();
   const [deck, setDeck] = useState({});
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const { deckId } = useParams();
-  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -26,24 +25,15 @@ function Study() {
       setCurrentCard(currentCard + 1);
       setIsFlipped(false);
     } else {
-      if (window.confirm("Restart cards?\n\nClick 'cancel' to return to the home page.")) {
+      if (window.confirm("Restart cards?")) {
         setCurrentCard(0);
         setIsFlipped(false);
-      } else {
-        history.push('/');
       }
     }
   };
 
-  if (deck.cards && deck.cards.length <= 2) {
-    return (
-      <div>
-        <h2>Study: {deck.name}</h2>
-        <h3>Not Enough Cards</h3>
-        <p>You need at least 3 cards to study. There are {deck.cards.length} cards in this deck.</p>
-        <button onClick={() => history.push(`/decks/${deckId}/cards/new`)}>Add Cards</button>
-      </div>
-    );
+  if (!deck.cards || deck.cards.length === 0) {
+    return <p>Loading...</p>;
   }
 
   return (

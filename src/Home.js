@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { listDecks } from './utils/api/index';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { listDecks, deleteDeck } from "./utils/api/index";
 
 function Home() {
   const [decks, setDecks] = useState([]);
@@ -13,26 +13,28 @@ function Home() {
     fetchData();
   }, []);
 
-  const handleDelete = (deckId) => {
+  const handleDelete = async (deckId) => {
     if (window.confirm("Are you sure you want to delete this deck?")) {
-      // Add your delete logic here
+      await deleteDeck(deckId);
+      const updatedDecks = decks.filter((deck) => deck.id !== deckId);
+      setDecks(updatedDecks);
     }
   };
 
   return (
     <div>
       <Link to="/decks/new">Create Deck</Link>
-      <ul>
+      <div>
         {decks.map((deck) => (
-          <li key={deck.id}>
+          <div key={deck.id}>
             <h3>{deck.name}</h3>
-            <p>{deck.description}</p>
-            <Link to={`/decks/${deck.id}`}>View</Link>
+            <p>{deck.cards.length} cards</p>
             <Link to={`/decks/${deck.id}/study`}>Study</Link>
+            <Link to={`/decks/${deck.id}`}>View</Link>
             <button onClick={() => handleDelete(deck.id)}>Delete</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
