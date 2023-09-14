@@ -1,29 +1,26 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createDeck } from "./utils/api/index";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { createDeck } from './utils/api/index';
 
 function CreateDeck() {
+  const [deck, setDeck] = useState({ name: '', description: '' });
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-  });
 
-  const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: target.value,
-    });
+  const handleChange = (event) => {
+    setDeck({ ...deck, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const newDeck = await createDeck(formData);
+    const newDeck = await createDeck(deck);
     history.push(`/decks/${newDeck.id}`);
   };
 
   return (
     <div>
+      <nav>
+        <Link to="/">Home</Link> / Create Deck
+      </nav>
       <h2>Create Deck</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
@@ -31,18 +28,18 @@ function CreateDeck() {
           id="name"
           name="name"
           type="text"
+          value={deck.name}
           onChange={handleChange}
-          value={formData.name}
         />
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
           name="description"
+          value={deck.description}
           onChange={handleChange}
-          value={formData.description}
         />
+        <button type="button" onClick={() => history.push('/')}>Cancel</button>
         <button type="submit">Submit</button>
-        <button onClick={() => history.push("/")}>Cancel</button>
       </form>
     </div>
   );
