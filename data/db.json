@@ -4,6 +4,16 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
+    },
+    {
+      "name": "JavaScript",
+      "description": "Java questions",
+      "id": 3
+    },
+    {
+      "name": "Test Deck",
+      "description": "Random workspace deck",
+      "id": 4
     }
   ],
   "cards": [
@@ -18,6 +28,48 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
+    },
+    {
+      "front": "Who is the coolest JS coder",
+      "back": "YOU! ",
+      "deckId": 3,
+      "id": 6
+    },
+    {
+      "front": "What program are you in right now?",
+      "back": "Thinkful Bootcamp",
+      "deckId": 3,
+      "id": 7
+    },
+    {
+      "front": "What is better Mercedes or Lambo?",
+      "back": "Ferrari",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "front": "What does <p> create?",
+      "back": "A paragraph",
+      "deckId": 2,
+      "id": 9
+    },
+    {
+      "front": "E=? ",
+      "back": "E=mc2",
+      "deckId": 4,
+      "id": 10
+    },
+    {
+      "front": "what is 2+2? ",
+      "back": "4",
+      "deckId": 4,
+      "id": 11
+    },
+    {
+      "front": "Where can you obtain water?",
+      "back": "In the sea ",
+      "deckId": 4,
+      "id": 12
     }
   ]
 }

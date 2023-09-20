@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { readDeck } from './utils/api/index';
 
 function Study() {
@@ -7,13 +7,14 @@ function Study() {
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const { deckId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
-    async function loadDeck() {
-      const loadedDeck = await readDeck(deckId);
-      setDeck(loadedDeck);
-    }
-    loadDeck();
+    const fetchData = async () => {
+      const fetchedDeck = await readDeck(deckId);
+      setDeck(fetchedDeck);
+    };
+    fetchData();
   }, [deckId]);
 
   const handleFlip = () => {
@@ -21,7 +22,7 @@ function Study() {
   };
 
   const handleNext = () => {
-    if (currentCard + 1 < deck.cards.length) {
+    if (currentCard < deck.cards.length - 1) {
       setCurrentCard(currentCard + 1);
       setIsFlipped(false);
     } else {
@@ -29,7 +30,7 @@ function Study() {
         setCurrentCard(0);
         setIsFlipped(false);
       } else {
-        // Navigate back to the home screen
+        history.push('/');
       }
     }
   };
@@ -40,7 +41,7 @@ function Study() {
         <Link to="/">Home</Link> / {deck.name} / Study
       </nav>
       <h2>Study: {deck.name}</h2>
-      {deck.cards && deck.cards.length > 2 ? (
+      {deck.cards && deck.cards.length >= 3 ? (
         <div>
           <p>Card {currentCard + 1} of {deck.cards.length}</p>
           <div>
