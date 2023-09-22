@@ -23,7 +23,7 @@ function Deck() {
   };
 
   const handleDeleteCard = async (cardId) => {
-    if (window.confirm('Are you sure you want to delete this card?')) {
+    if (window.confirm('Are you sure you want to delete this card? You wont be able to recover it.')) {
       await deleteCard(cardId);
       const updatedDeck = await readDeck(deckId);
       setDeck(updatedDeck);

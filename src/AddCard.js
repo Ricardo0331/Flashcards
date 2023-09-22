@@ -14,7 +14,11 @@ function AddCard() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createCard(deckId, card);
-    history.push(`/decks/${deckId}`);
+    setCard({ front: '', back: '' }); // Clear the form
+  };
+
+  const handleDone = () => {
+    history.push(`/decks/${deckId}`); // Navigate to the Deck screen
   };
 
   return (
@@ -23,7 +27,8 @@ function AddCard() {
       <input id="front" name="front" type="text" value={card.front} onChange={handleChange} />
       <label htmlFor="back">Back</label>
       <input id="back" name="back" type="text" value={card.back} onChange={handleChange} />
-      <button type="submit">Add Card</button>
+      <button type="submit">Save</button>
+      <button type="button" onClick={handleDone}>Done</button> 
     </form>
   );
 }

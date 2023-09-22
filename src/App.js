@@ -8,6 +8,7 @@ import EditDeck from './EditDeck';
 import AddCard from './AddCard';
 import EditCard from './EditCard';
 import { listDecks } from './utils/api';
+import NotFound from './Layout/NotFound';
 
 function App() {
   const [decks, setDecks] = useState([]);
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard decks={decks} />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>
