@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { readDeck } from './utils/api/index';
+import { readDeck } from '../utils/api/index';
 
 function Study() {
   const [deck, setDeck] = useState({});

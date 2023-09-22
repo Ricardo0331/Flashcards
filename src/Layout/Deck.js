@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { readDeck, deleteDeck, deleteCard } from './utils/api/index';
+import { readDeck, deleteDeck, deleteCard } from '../utils/api/index';
 
 function Deck() {
   const [deck, setDeck] = useState({});

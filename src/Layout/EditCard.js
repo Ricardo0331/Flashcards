@@ -1,45 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { readDeck, updateDeck } from './utils/api/index';
+import { readCard, updateCard } from '../utils/api/index';
 
-function EditDeck() {
-  const [deck, setDeck] = useState({ name: '', description: '' });
-  const { deckId } = useParams();
+function EditCard() {
+  const [card, setCard] = useState({ front: '', back: '' });
+  const { deckId, cardId } = useParams();
   const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedDeck = await readDeck(deckId);
-      setDeck(fetchedDeck);
+      const fetchedCard = await readCard(cardId);
+      setCard(fetchedCard);
     };
     fetchData();
-  }, [deckId]);
+  }, [cardId]);
 
   const handleChange = (event) => {
-    setDeck({ ...deck, [event.target.name]: event.target.value });
+    setCard({ ...card, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await updateDeck(deck);
+    await updateCard(card);
     history.push(`/decks/${deckId}`);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input
-        id="name"
-        name="name"
-        type="text"
-        value={deck.name}
+      <label htmlFor="front">Front</label>
+      <textarea
+        id="front"
+        name="front"
+        value={card.front}
         onChange={handleChange}
       />
-      <label htmlFor="description">Description</label>
+      <label htmlFor="back">Back</label>
       <textarea
-        id="description"
-        name="description"
-        value={deck.description}
+        id="back"
+        name="back"
+        value={card.back}
         onChange={handleChange}
       />
       <button type="submit">Save</button>
@@ -50,4 +49,4 @@ function EditDeck() {
   );
 }
 
-export default EditDeck;
+export default EditCard;

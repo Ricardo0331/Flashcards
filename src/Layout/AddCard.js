@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { createCard } from './utils/api/index';
+import { createCard } from '../utils/api/index';
 
 function AddCard() {
   const [card, setCard] = useState({ front: '', back: '' });
