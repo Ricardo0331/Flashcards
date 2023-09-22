@@ -23,10 +23,8 @@ function Home() {
 
   return (
     <div>
-      <h1>Alpha FlashMaster</h1>
-      <p>Master Your Studies, One Flashcard at a Time!</p> 
-      <div>
       <Link to="/decks/new">Create Deck</Link>
+      <div>
         {decks.map((deck) => (
           <div key={deck.id}>
             <h3>{deck.name}</h3>
