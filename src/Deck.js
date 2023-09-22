@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { readDeck, deleteDeck } from './utils/api/index';
+import { readDeck, deleteDeck, deleteCard } from './utils/api/index';
 
 function Deck() {
   const [deck, setDeck] = useState({});
@@ -22,24 +22,33 @@ function Deck() {
     }
   };
 
+  const handleDeleteCard = async (cardId) => {
+    if (window.confirm('Are you sure you want to delete this card?')) {
+      await deleteCard(cardId);
+      const updatedDeck = await readDeck(deckId);
+      setDeck(updatedDeck);
+    }
+  };
+
   return (
     <div>
       <nav>
         <Link to="/">Home</Link> / {deck.name}
       </nav>
-      <h2>{deck.name}</h2>
+      <h1>{deck.name}</h1>
       <p>{deck.description}</p>
-      <button><Link to={`/decks/${deckId}/edit`}>Edit</Link></button>
-      <button><Link to={`/decks/${deckId}/study`}>Study</Link></button>
-      <button><Link to={`/decks/${deckId}/cards/new`}>Add Cards</Link></button>
+      <Link to={`/decks/${deckId}/edit`}>Edit</Link>
+      <Link to={`/decks/${deckId}/study`}>Study</Link>
+      <Link to={`/decks/${deckId}/cards/new`}>Add Cards</Link>
       <button onClick={handleDelete}>Delete</button>
-      <h3>Cards</h3>
+
+      <h2>Cards</h2>
       {deck.cards && deck.cards.map((card) => (
         <div key={card.id}>
-          <p>Question: {card.front}</p>
-          <p>Answer: {card.back}</p>
-          <button><Link to={`/decks/${deckId}/cards/${card.id}/edit`}>Edit</Link></button>
-          <button onClick={() => {/* Add delete card functionality here */}}>Delete</button>
+          <p>Front: {card.front}</p>
+          <p>Back: {card.back}</p>
+          <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>Edit</Link>
+          <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
         </div>
       ))}
     </div>

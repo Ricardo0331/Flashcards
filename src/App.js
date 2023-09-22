@@ -4,7 +4,7 @@ import Home from './Home';
 import Study from './Study';
 import CreateDeck from './CreateDeck';
 import Deck from './Deck';
-//import EditDeck from './EditDeck';
+import EditDeck from './EditDeck';
 import AddCard from './AddCard';
 import EditCard from './EditCard';
 import { listDecks } from './utils/api';
@@ -36,9 +36,9 @@ function App() {
           <Route path="/decks/:deckId/study">
             <Study decks={decks} />
           </Route>
-          {/* <Route path="/decks/:deckId/edit">
+          <Route path="/decks/:deckId/edit">
             <EditDeck decks={decks} />
-          </Route> */}
+          </Route>
           <Route path="/decks/:deckId/cards/new">
             <AddCard decks={decks} />
           </Route>
