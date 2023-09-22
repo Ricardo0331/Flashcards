@@ -37,7 +37,7 @@ function Study() {
       <nav>
         <Link to="/">Home</Link> / {deck.name} / Study
       </nav>
-      <h1>Study: {deck.name}</h1>
+      <h2>Study: </h2><h2>{deck.name}</h2>
       {deck.cards && deck.cards.length >= 3 ? (
         <div>
           <p>Card {currentCard + 1} of {deck.cards.length}</p>
@@ -48,12 +48,12 @@ function Study() {
           {flip && <button onClick={handleNext}>Next</button>}
         </div>
       ) : (
-        <>
+        <div>
           <p>Not enough cards. You need at least 3 cards to study.</p>
           <Link to={`/decks/${deckId}/cards/new`}>
             <button>Add Cards</button>
           </Link>
-        </>
+        </div>
       )}
     </div>
   );

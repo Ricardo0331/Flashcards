@@ -45,8 +45,8 @@ function Deck() {
       <h2>Cards</h2>
       {deck.cards && deck.cards.map((card) => (
         <div key={card.id}>
-          <p>Front: {card.front}</p>
-          <p>Back: {card.back}</p>
+          <p>Front: </p><p>{card.front}</p>
+          <p>Back: </p><p>{card.back}</p>
           <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>Edit</Link>
           <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
         </div>
