@@ -37,18 +37,21 @@ function Deck() {
       </nav>
       <h1>{deck.name}</h1>
       <p>{deck.description}</p>
+    <div className="deck-options">
       <Link to={`/decks/${deckId}/edit`}>Edit</Link>
       <Link to={`/decks/${deckId}/study`}>Study</Link>
       <Link to={`/decks/${deckId}/cards/new`}>Add Cards</Link>
       <button onClick={handleDelete}>Delete</button>
-
+    </div>
       <h2>Cards</h2>
       {deck.cards && deck.cards.map((card) => (
-        <div key={card.id}>
+        <div key={card.id} className="card-container">
           <p>Front: </p><p>{card.front}</p>
           <p>Back: </p><p>{card.back}</p>
-          <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>Edit</Link>
-          <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
+          <div className="card-options">
+            <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>Edit</Link>
+            <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
+          </div>
         </div>
       ))}
     </div>
