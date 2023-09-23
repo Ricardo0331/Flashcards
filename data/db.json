@@ -19,6 +19,11 @@
       "name": "Jessica's Questions ",
       "description": "Cosmo stuff",
       "id": 5
+    },
+    {
+      "name": "Default Deck",
+      "description": "Deck for visual testing",
+      "id": 6
     }
   ],
   "cards": [
@@ -87,6 +92,30 @@
       "back": "Ok",
       "deckId": 2,
       "id": 16
+    },
+    {
+      "front": "Whats the use",
+      "back": "Mac Miller",
+      "deckId": 6,
+      "id": 17
+    },
+    {
+      "front": "Money Trees",
+      "back": "Kendrick Lamar",
+      "deckId": 6,
+      "id": 18
+    },
+    {
+      "front": "thank u next",
+      "back": "Ariana Grande",
+      "deckId": 6,
+      "id": 19
+    },
+    {
+      "front": "Por las noches ",
+      "back": "Peso Pluma (Doble P)",
+      "deckId": 6,
+      "id": 20
     }
   ]
 }
