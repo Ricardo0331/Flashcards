@@ -4,8 +4,8 @@ function Header() {
   return (
     <header className="jumbotron bg-dark">
       <div className="container text-white">
-        <h1 className="display-4">Flashcard-o-matic</h1>
-        <p className="lead">Discover The Flashcard Difference.</p>
+        <h1 className="display-4">Flash Dojo</h1>
+        <p className="lead">Master Your Knowledge.</p>
       </div>
     </header>
   );
