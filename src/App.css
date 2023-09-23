@@ -106,7 +106,7 @@ body {
   /* Spacing for card options in Deck.js */
 .card-options {
     display: flex;
-    gap: 20px; /* Adjust this value to your liking */
+    gap: 20px; 
   }
   
   .card-options a,
@@ -132,3 +132,32 @@ body {
   margin: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+/* Styling for individual deck container on Home page */
+.deck-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for buttons on Home page */
+  .home-button {
+    margin-right: 10px;
+  }
+  
+
+  /* Styling for the Create Deck button */
+.create-deck-button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

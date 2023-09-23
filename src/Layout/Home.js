@@ -23,14 +23,16 @@ function Home() {
 
   return (
     <div>
-      <Link to="/decks/new">Create Deck</Link>
+      <Link to="/decks/new">
+        <button className="create-deck-button">Create Deck</button>
+      </Link>
       <div>
         {decks.map((deck) => (
-          <div key={deck.id}>
+          <div key={deck.id} className="deck-container">
             <h3>{deck.name}</h3>
             <p>{deck.cards.length} cards</p>
-            <Link to={`/decks/${deck.id}/study`}>Study</Link>
-            <Link to={`/decks/${deck.id}`}>View</Link>
+            <Link to={`/decks/${deck.id}/study`} className="home-button">Study</Link>
+            <Link to={`/decks/${deck.id}`} className="home-button">View</Link>
             <button onClick={() => handleDelete(deck.id)}>Delete</button>
           </div>
         ))}
