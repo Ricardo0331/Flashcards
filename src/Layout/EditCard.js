@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { readCard, updateCard } from '../utils/api/index';
+import CardForm from './CardForm';
 
 function EditCard() {
   const [card, setCard] = useState({ front: '', back: '' });
@@ -25,28 +26,18 @@ function EditCard() {
     history.push(`/decks/${deckId}`);
   };
 
+  const handleCancel = () => history.push(`/decks/${deckId}`)
+
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="front">Front</label>
-      <textarea
-        id="front"
-        name="front"
-        value={card.front}
-        onChange={handleChange}
-      />
-      <label htmlFor="back">Back</label>
-      <textarea
-        id="back"
-        name="back"
-        value={card.back}
-        onChange={handleChange}
-      />
-      <button type="submit">Save</button>
-      <button type="button" onClick={() => history.push(`/decks/${deckId}`)}>
-        Cancel
-      </button>
-    </form>
-  );
+    <CardForm 
+      handleSubmit={handleSubmit} 
+      card={card} 
+      handleChange={handleChange}
+      handleDone={handleCancel}
+      doneButtonName="Cancel"
+    />
+);
 }
 
 export default EditCard;

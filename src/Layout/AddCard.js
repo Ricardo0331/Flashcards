@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { createCard, readDeck } from '../utils/api/index';
+import CardForm from './CardForm';
 
 function AddCard() {
   const [card, setCard] = useState({ front: '', back: '' });
@@ -36,14 +37,13 @@ function AddCard() {
         <Link to="/">Home</Link> / <Link to={`/decks/${deckId}`}>{deck.name}</Link> / Add Card
       </nav>
       <h2>{deck.name}: Add Card</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="front">Front</label>
-        <input id="front" name="front" type="text" value={card.front} onChange={handleChange} />
-        <label htmlFor="back">Back</label>
-        <input id="back" name="back" type="text" value={card.back} onChange={handleChange} />
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleDone}>Done</button> 
-      </form>
+      <CardForm 
+        handleSubmit={handleSubmit} 
+        card={card} 
+        handleChange={handleChange}
+        handleDone={handleDone}
+        doneButtonName="Done"
+      />
     </>
   );
 }
