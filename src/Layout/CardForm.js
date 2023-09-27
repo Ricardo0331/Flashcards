@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function CardForm(props) {
-    console.log(props);
+    //console.log(props);
     const {handleSubmit, card, handleChange, handleDone, doneButtonName} = props;
     return (
         <form onSubmit={handleSubmit}>

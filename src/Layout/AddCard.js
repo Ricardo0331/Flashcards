@@ -34,7 +34,8 @@ function AddCard() {
   return (
     <>
       <nav>
-        <Link to="/">Home</Link> / <Link to={`/decks/${deckId}`}>{deck.name}</Link> / Add Card
+      <li className="breadcrumb-primary"><a href={`/decks/${deck.id}`}>{deck.name}</a></li>
+          <li className="breadcrumb-secondary">Add Card</li>      
       </nav>
       <h2>{deck.name}: Add Card</h2>
       <CardForm 
