@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { readDeck } from '../utils/api/index';
 
 function Study() {
@@ -7,6 +7,7 @@ function Study() {
   const [currentCard, setCurrentCard] = useState(0);
   const [flip, setFlip] = useState(false);
   const { deckId } = useParams();
+    const history = useHistory(); 
 
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +29,8 @@ function Study() {
       if (window.confirm('Restart cards?')) {
         setCurrentCard(0);
         setFlip(false);
+      } else {
+        history.push('/'); 
       }
     }
   };
